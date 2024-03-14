@@ -46,7 +46,7 @@ Optionally you can specify a directory where the repository will be located by p
 
 The command will rewrite history of all mentioned repositories as if they were developed in separate subdirectories.
 
-Only branches `master` will be merged together, other branches will be kept only from first package to avoid possible branch name conflicts.
+Only branches `main` will be merged together, other branches will be kept only from first package to avoid possible branch name conflicts.
 
 ```
 ~/monorepo-tools/monorepo_build.sh \
@@ -55,12 +55,12 @@ Only branches `master` will be merged together, other branches will be kept only
 
 This may take a while, depending on the size of your repositories.
 
-Now your `master` branch should contain all packages in separate directories. For our example it would mean:
+Now your `main` branch should contain all packages in separate directories. For our example it would mean:
 
--   **main-repository/** - contains repository _vendor/main-repository_
--   **packages/**
-    -   **alpha/** - contains repository _vendor/alpha_
-    -   **beta/** - contains repository _vendor/beta_
+- **main-repository/** - contains repository _vendor/main-repository_
+- **packages/**
+  - **alpha/** - contains repository _vendor/alpha_
+  - **beta/** - contains repository _vendor/beta_
 
 ### 4. Splitting into original repositories
 
@@ -92,15 +92,15 @@ _To overcome this you can add [the `--force` flag](https://git-scm.com/docs/git-
 When you have the monorepo, you may find a reason for adding a new package after some time you already use the monorepo.
 In this case, don't use `monorepo_build.sh`, but do following steps:
 
--   Create a new repository, for example, _vendor/gamma_
--   Add remote into the monorepo `git remote add package-gamma http://github.com/vendor/gamma.git`
--   Create a new directory in the monorepo **packages/gamma**
--   Add the code and commit it
--   Use split tool with the new package
-    ```
-    ~/monorepo-tools/monorepo_split.sh \
-        main-repository package-alpha:packages/alpha package-beta:packages/beta package-gamma:packages/gamma
-    ```
+- Create a new repository, for example, _vendor/gamma_
+- Add remote into the monorepo `git remote add package-gamma http://github.com/vendor/gamma.git`
+- Create a new directory in the monorepo **packages/gamma**
+- Add the code and commit it
+- Use split tool with the new package
+  ```
+  ~/monorepo-tools/monorepo_split.sh \
+      main-repository package-alpha:packages/alpha package-beta:packages/beta package-gamma:packages/gamma
+  ```
 
 ## Reference
 
